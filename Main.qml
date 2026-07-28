@@ -116,8 +116,10 @@ ApplicationWindow {
             }
 
             TextField {
-                id: bedField
+                id: searchField
                 placeholderText: qsTr("Search measurements")
+                KeyNavigation.tab: heartRateCard
+                KeyNavigation.priority: KeyNavigation.BeforeItem
             }
 
             ColumnLayout {
@@ -160,7 +162,7 @@ ApplicationWindow {
                 }
 
                 LayoutItemProxy {
-                    target: bedField
+                    target: searchField
                     Layout.fillWidth: true
                 }
 
@@ -282,6 +284,7 @@ ApplicationWindow {
                         rowSpacing: 14
 
                         VitalCard {
+                            id: heartRateCard
                             name: qsTr("Heart rate")
                             value: "78"
                             unit: qsTr("bpm")
@@ -297,9 +300,13 @@ ApplicationWindow {
                                 window.selectedVital = 0
                                 window.selectedVitalName = name
                             }
+
+                            KeyNavigation.tab: oxygenCard
+                            KeyNavigation.backtab: searchField
                         }
 
                         VitalCard {
+                            id: oxygenCard
                             name: qsTr("Oxygen saturation")
                             value: "97"
                             unit: "%"
@@ -315,9 +322,13 @@ ApplicationWindow {
                                 window.selectedVital = 1
                                 window.selectedVitalName = name
                             }
+
+                            KeyNavigation.tab: bloodPressureCard
+                            KeyNavigation.backtab: heartRateCard
                         }
 
                         VitalCard {
+                            id: bloodPressureCard
                             name: qsTr("Non-invasive BP")
                             value: "118/74"
                             unit: qsTr("mmHg")
@@ -333,9 +344,13 @@ ApplicationWindow {
                                 window.selectedVital = 2
                                 window.selectedVitalName = name
                             }
+
+                            KeyNavigation.tab: respiratoryCard
+                            KeyNavigation.backtab: oxygenCard
                         }
 
                         VitalCard {
+                            id: respiratoryCard
                             name: qsTr("Respiratory rate")
                             value: "16"
                             unit: qsTr("/min")
@@ -351,6 +366,8 @@ ApplicationWindow {
                                 window.selectedVital = 3
                                 window.selectedVitalName = name
                             }
+
+                            KeyNavigation.backtab: bloodPressureCard
                         }
                     }
 
