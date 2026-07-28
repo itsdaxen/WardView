@@ -1,0 +1,36 @@
+# macOS metadata
+.DS_Store
+
+# Qt Creator user-specific settings
+*.user
+*.user.*
+.qtcreator/
+
+# CMake and Qt build output
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+build.ninja
+.ninja_deps
+.ninja_log
+
+# Generated Qt artifacts
+.qt/
+.rcc/
+.qtc_clangd/
+*_autogen/
+*.qmltypes
+qmldir
+
+# Compiled artifacts
+*.app/
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
