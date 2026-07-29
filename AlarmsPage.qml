@@ -7,6 +7,10 @@ Item {
 
     property Item previousTabItem
 
+    readonly property real timeColumnWidth: 150
+    readonly property real valueColumnWidth: 150
+    readonly property real actionColumnWidth: 130
+
     onPreviousTabItemChanged: {
         if (previousTabItem)
             previousTabItem.KeyNavigation.tab = alarmList;
@@ -202,14 +206,13 @@ Item {
                     spacing: 16
 
                     Label {
-                        Layout.preferredWidth: 150
+                        Layout.preferredWidth: root.timeColumnWidth
                         text: qsTr("Time")
                         color: Theme.textMuted
                         font.bold: true
                     }
 
                     Label {
-                        Layout.preferredWidth: 150
                         text: qsTr("Measurement")
                         color: Theme.textMuted
                         font.bold: true
@@ -220,96 +223,30 @@ Item {
                     }
 
                     Label {
-                        Layout.preferredWidth: 150
+                        Layout.preferredWidth: root.valueColumnWidth
                         text: qsTr("Value")
                         color: Theme.textMuted
                         font.bold: true
                     }
 
                     Item {
-                        Layout.preferredWidth: 130
+                        Layout.preferredWidth: root.actionColumnWidth
                     }
                 }
             }
 
-            delegate: Rectangle {
-                required property int index
-                required property string time
-                required property string parameter
-                required property string value
-                required property bool acknowledged
+            delegate: AlarmRow {
+                timeColumnWidth: root.timeColumnWidth
+                valueColumnWidth: root.valueColumnWidth
+                actionColumnWidth: root.actionColumnWidth
 
-                width: ListView.view.width
-                height: 72
-                color: Theme.surface
-
-                RowLayout {
-                    anchors.fill: parent
-                    anchors.margins: 16
-                    spacing: 16
-
-                    Label {
-                        Layout.preferredWidth: 150
-                        text: time
-                        color: Theme.textSecondary
-                    }
-
-                    Label {
-                        text: parameter
-                        color: Theme.textPrimary
-                        font.bold: true
-                    }
-
-                    Item {
-                        Layout.fillWidth: true
-                    }
-
-                    Label {
-                        Layout.preferredWidth: 150
-                        text: value
-                        color: Theme.textPrimary
-                        font.bold: true
-                    }
-
-                    Button {
-                        text: acknowledged ? qsTr("Acknowledged") : qsTr("Acknowledge")
-                        font.bold: true
-                        Layout.preferredWidth: 130
-
-                        contentItem: Text {
-                            text: parent.text
-                            color: "white"
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-
-                        background: Rectangle {
-                            color: acknowledged ? Theme.success : Theme.info
-                        }
-
-                        enabled: !acknowledged
-
-                        onClicked: {
-                            alarmModel.setProperty(index, "acknowledged", true);
-                        }
-                    }
+                onSelectionRequested: {
+                    alarmList.currentIndex = index;
+                    alarmList.forceActiveFocus();
                 }
 
-                Rectangle {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.bottom: parent.bottom
-
-                    height: 1
-                    color: Theme.border
-                    visible: index < alarmList.count - 1
-                }
-
-                TapHandler {
-                    onTapped: {
-                        alarmList.currentIndex = index;
-                        alarmList.forceActiveFocus();
-                    }
+                onAcknowledgeRequested: {
+                    alarmModel.setProperty(index, "acknowledged", true);
                 }
             }
 
