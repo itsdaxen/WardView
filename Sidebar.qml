@@ -74,20 +74,13 @@ Rectangle {
             Layout.fillHeight: true
         }
 
-        Label {
-            text: qsTr("CENTRAL UNIT")
-            color: Theme.textMuted
-            font.pixelSize: 11
-            font.bold: true
-        }
-
         LayoutItemProxy {
             target: searchField
             Layout.fillWidth: true
         }
 
         Label {
-            text: qsTr("Connected · Ward 4B")
+            text: qsTr("Connected")
             color: Theme.success
             font.pixelSize: 12
         }

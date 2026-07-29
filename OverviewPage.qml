@@ -111,7 +111,7 @@ Item {
                     spacing: 3
 
                     Label {
-                        text: qsTr("BED 12 · ROOM 418")
+                        text: qsTr("BED 12 · ROOM 418 · Ward 4B")
                         color: Theme.textMuted
                         font.pixelSize: 12
                         font.bold: true
@@ -127,9 +127,6 @@ Item {
                     }
                 }
 
-                StatusPill {
-                    label: qsTr("Monitoring")
-                }
             }
 
             Flow {
