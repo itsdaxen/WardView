@@ -17,6 +17,7 @@ qt_add_qml_module(wardview
     URI WardView
     QML_FILES
         Main.qml
+        OverviewPage.qml
         VitalCard.qml
         TrendsPage.qml
         TrendRow.qml
