@@ -14,18 +14,17 @@ Rectangle {
 
     activeFocusOnTab: true
 
-    signal activated()
+    signal activated
 
     implicitHeight: 150
     radius: 8
     color: selected ? "#edf6fb" : hoverHandler.hovered ? "#f7fafb" : "white"
     border.width: selected || activeFocus ? 2 : 1
-    border.color: selected || activeFocus  ? "#2b6f8f" : "#d6e0e6"
+    border.color: selected || activeFocus ? "#2b6f8f" : "#d6e0e6"
 
     Keys.onReturnPressed: root.activated()
     Keys.onEnterPressed: root.activated()
     Keys.onSpacePressed: root.activated()
-
 
     ColumnLayout {
         anchors.fill: parent
@@ -82,8 +81,8 @@ Rectangle {
 
     TapHandler {
         onTapped: {
-            root.forceActiveFocus()
-            root.activated()
+            root.forceActiveFocus();
+            root.activated();
         }
     }
 

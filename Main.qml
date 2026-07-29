@@ -18,13 +18,13 @@ ApplicationWindow {
     property int selectedVital: -1
     property string selectedVitalName: qsTr("No vital selected")
 
-    component SectionTitle : Label {
+    component SectionTitle: Label {
         font.pixelSize: 20
         font.bold: true
         color: "#152536"
     }
 
-    component StatusPill : Rectangle {
+    component StatusPill: Rectangle {
         required property string label
         property color accent: "#16794b"
 
@@ -44,7 +44,7 @@ ApplicationWindow {
         }
     }
 
-    component InfoPanel : Rectangle {
+    component InfoPanel: Rectangle {
         id: infoPanel
 
         required property string heading
@@ -297,8 +297,8 @@ ApplicationWindow {
                             Layout.preferredHeight: implicitHeight
 
                             onActivated: {
-                                window.selectedVital = 0
-                                window.selectedVitalName = name
+                                window.selectedVital = 0;
+                                window.selectedVitalName = name;
                             }
 
                             KeyNavigation.tab: oxygenCard
@@ -319,8 +319,8 @@ ApplicationWindow {
                             Layout.preferredHeight: implicitHeight
 
                             onActivated: {
-                                window.selectedVital = 1
-                                window.selectedVitalName = name
+                                window.selectedVital = 1;
+                                window.selectedVitalName = name;
                             }
 
                             KeyNavigation.tab: bloodPressureCard
@@ -341,8 +341,8 @@ ApplicationWindow {
                             Layout.preferredHeight: implicitHeight
 
                             onActivated: {
-                                window.selectedVital = 2
-                                window.selectedVitalName = name
+                                window.selectedVital = 2;
+                                window.selectedVitalName = name;
                             }
 
                             KeyNavigation.tab: respiratoryCard
@@ -363,8 +363,8 @@ ApplicationWindow {
                             Layout.preferredHeight: implicitHeight
 
                             onActivated: {
-                                window.selectedVital = 3
-                                window.selectedVitalName = name
+                                window.selectedVital = 3;
+                                window.selectedVitalName = name;
                             }
 
                             KeyNavigation.backtab: bloodPressureCard
@@ -431,9 +431,7 @@ ApplicationWindow {
                         InfoPanel {
                             Layout.fillWidth: true
                             heading: qsTr("Selected measurement")
-                            body: window.selectedVital < 0
-                                  ? qsTr("Select a vital card to inspect its measurement context.")
-                                  : qsTr("%1 details are ready. Review its limits and recent measurements.").arg(window.selectedVitalName)
+                            body: window.selectedVital < 0 ? qsTr("Select a vital card to inspect its measurement context.") : qsTr("%1 details are ready. Review its limits and recent measurements.").arg(window.selectedVitalName)
                         }
 
                         Label {
