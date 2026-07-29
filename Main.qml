@@ -51,6 +51,14 @@ ApplicationWindow {
 
                 onLoaded: item.patientName = "Alex Morgan"
             }
+
+            Loader {
+                id: alarmsLoader
+
+                anchors.fill: parent
+                active: window.currentPage === "alarms"
+                source: "AlarmsPage.qml"
+            }
         }
 
         RowLayout {

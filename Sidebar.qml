@@ -28,6 +28,7 @@ Rectangle {
     Button {
         id: alarmsButton
         text: qsTr("Alarms")
+        onClicked: root.pageRequested("alarms")
     }
 
     Button {
