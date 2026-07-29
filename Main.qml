@@ -457,6 +457,8 @@ ApplicationWindow {
                 anchors.fill: parent
                 active: window.currentPage === "trends"
                 source: "TrendsPage.qml"
+
+                onLoaded: item.patientName = "Alex Morgan"
             }
         }
 
