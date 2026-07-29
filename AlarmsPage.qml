@@ -202,13 +202,14 @@ Item {
                     spacing: 16
 
                     Label {
-                        Layout.preferredWidth: 52
+                        Layout.preferredWidth: 150
                         text: qsTr("Time")
                         color: Theme.textMuted
                         font.bold: true
                     }
 
                     Label {
+                        Layout.preferredWidth: 150
                         text: qsTr("Measurement")
                         color: Theme.textMuted
                         font.bold: true
@@ -219,9 +220,14 @@ Item {
                     }
 
                     Label {
+                        Layout.preferredWidth: 150
                         text: qsTr("Value")
                         color: Theme.textMuted
                         font.bold: true
+                    }
+
+                    Item {
+                        Layout.preferredWidth: 130
                     }
                 }
             }
@@ -231,6 +237,7 @@ Item {
                 required property string time
                 required property string parameter
                 required property string value
+                required property bool acknowledged
 
                 width: ListView.view.width
                 height: 72
@@ -242,7 +249,7 @@ Item {
                     spacing: 16
 
                     Label {
-                        Layout.preferredWidth: 52
+                        Layout.preferredWidth: 150
                         text: time
                         color: Theme.textSecondary
                     }
@@ -258,9 +265,33 @@ Item {
                     }
 
                     Label {
+                        Layout.preferredWidth: 150
                         text: value
                         color: Theme.textPrimary
                         font.bold: true
+                    }
+
+                    Button {
+                        text: acknowledged ? qsTr("Acknowledged") : qsTr("Acknowledge")
+                        font.bold: true
+                        Layout.preferredWidth: 130
+
+                        contentItem: Text {
+                            text: parent.text
+                            color: "white"
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+
+                        background: Rectangle {
+                            color: acknowledged ? Theme.success : Theme.info
+                        }
+
+                        enabled: !acknowledged
+
+                        onClicked: {
+                            alarmModel.setProperty(index, "acknowledged", true);
+                        }
                     }
                 }
 
