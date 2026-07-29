@@ -13,8 +13,8 @@ Rectangle {
 
     implicitHeight: 78
     radius: 8
-    color: "white"
-    border.color: "#d6e0e6"
+    color: Theme.surface
+    border.color: Theme.border
 
     RowLayout {
         anchors.fill: parent
@@ -27,13 +27,13 @@ Rectangle {
 
             Label {
                 text: root.name
-                color: "#152536"
+                color: Theme.textPrimary
                 font.bold: true
             }
 
             Label {
                 text: root.timeRange
-                color: "#526574"
+                color: Theme.textSecondary
                 font.pixelSize: 12
             }
         }
@@ -51,21 +51,21 @@ Rectangle {
 
                 Label {
                     text: root.values
-                    color: "#152536"
+                    color: Theme.textPrimary
                     font.pixelSize: 18
                     font.bold: true
                 }
 
                 Label {
                     text: root.unit
-                    color: "#526574"
+                    color: Theme.textSecondary
                 }
             }
 
             Label {
                 Layout.alignment: Qt.AlignRight
                 text: root.direction
-                color: "#526574"
+                color: Theme.textSecondary
                 font.pixelSize: 12
             }
         }

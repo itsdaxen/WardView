@@ -14,19 +14,19 @@ Item {
 
         Label {
             text: qsTr("Trends")
-            color: "#152536"
+            color: Theme.textPrimary
             font.pixelSize: 26
             font.bold: true
         }
 
         Label {
             text: qsTr("Patient measurements over time")
-            color: "#526574"
+            color: Theme.textSecondary
         }
 
         Label {
             text: qsTr("Patient: %1").arg(root.patientName)
-            color: "#526574"
+            color: Theme.textSecondary
         }
 
         ColumnLayout {
