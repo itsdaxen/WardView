@@ -24,6 +24,8 @@ qt_add_qml_module(wardview
         Theme.qml
         Sidebar.qml
         OverviewPage.qml
+        AlarmsPage.qml
+        AlarmRow.qml
         VitalCard.qml
         TrendsPage.qml
         TrendRow.qml
