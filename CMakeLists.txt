@@ -9,6 +9,10 @@ find_package(Qt6 6.11.1 REQUIRED COMPONENTS Quick QuickControls2)
 
 qt_standard_project_setup(REQUIRES 6.11)
 
+set_source_files_properties(Theme.qml PROPERTIES
+    QT_QML_SINGLETON_TYPE TRUE
+)
+
 qt_add_executable(wardview
     main.cpp
 )
@@ -17,6 +21,7 @@ qt_add_qml_module(wardview
     URI WardView
     QML_FILES
         Main.qml
+        Theme.qml
         Sidebar.qml
         OverviewPage.qml
         VitalCard.qml

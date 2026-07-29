@@ -18,9 +18,9 @@ Rectangle {
 
     implicitHeight: 150
     radius: 8
-    color: selected ? "#edf6fb" : hoverHandler.hovered ? "#f7fafb" : "white"
+    color: selected ? Theme.surfaceSelected : hoverHandler.hovered ? Theme.surfaceHover : Theme.surface
     border.width: selected || activeFocus ? 2 : 1
-    border.color: selected || activeFocus ? "#2b6f8f" : "#d6e0e6"
+    border.color: selected || activeFocus ? Theme.info : Theme.border
 
     Keys.onReturnPressed: root.activated()
     Keys.onEnterPressed: root.activated()
@@ -37,7 +37,7 @@ Rectangle {
             Label {
                 Layout.fillWidth: true
                 text: root.name
-                color: "#526574"
+                color: Theme.textSecondary
                 font.bold: true
             }
 
@@ -58,14 +58,14 @@ Rectangle {
 
             Label {
                 text: root.value
-                color: "#132b3b"
+                color: Theme.textStrong
                 font.pixelSize: root.value.length > 6 ? 29 : 38
                 font.bold: true
             }
 
             Label {
                 text: root.unit
-                color: "#657985"
+                color: Theme.textMuted
                 font.pixelSize: 14
                 Layout.alignment: Qt.AlignBottom
                 Layout.bottomMargin: 6

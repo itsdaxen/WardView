@@ -9,12 +9,12 @@ Rectangle {
     readonly property alias searchInput: searchField
 
     signal pageRequested(string page)
-    color: "#e8f0f4"
+    color: Theme.sidebarBackground
 
     Label {
         id: brandLabel
         text: qsTr("WardView")
-        color: "#17384a"
+        color: Theme.brandText
         font.pixelSize: 22
         font.bold: true
     }
@@ -76,7 +76,7 @@ Rectangle {
 
         Label {
             text: qsTr("CENTRAL UNIT")
-            color: "#647784"
+            color: Theme.textMuted
             font.pixelSize: 11
             font.bold: true
         }
@@ -88,7 +88,7 @@ Rectangle {
 
         Label {
             text: qsTr("Connected · Ward 4B")
-            color: "#16794b"
+            color: Theme.success
             font.pixelSize: 12
         }
     }

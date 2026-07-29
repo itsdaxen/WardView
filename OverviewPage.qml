@@ -18,12 +18,12 @@ Item {
     component SectionTitle: Label {
         font.pixelSize: 20
         font.bold: true
-        color: "#152536"
+        color: Theme.textPrimary
     }
 
     component StatusPill: Rectangle {
         required property string label
-        property color accent: "#16794b"
+        property color accent: Theme.success
 
         implicitWidth: pillLabel.implicitWidth + 22
         implicitHeight: 32
@@ -46,12 +46,12 @@ Item {
 
         required property string heading
         required property string body
-        property color accent: "#2b6f8f"
+        property color accent: Theme.info
 
         implicitHeight: 132
         radius: 8
-        color: "white"
-        border.color: "#d6e0e6"
+        color: Theme.surface
+        border.color: Theme.border
 
         ColumnLayout {
             anchors.fill: parent
@@ -67,7 +67,7 @@ Item {
 
             Label {
                 text: infoPanel.heading
-                color: "#152536"
+                color: Theme.textPrimary
                 font.bold: true
                 font.pixelSize: 16
             }
@@ -75,7 +75,7 @@ Item {
             Label {
                 Layout.fillWidth: true
                 text: infoPanel.body
-                color: "#526574"
+                color: Theme.textSecondary
                 wrapMode: Text.WordWrap
             }
         }
@@ -112,7 +112,7 @@ Item {
 
                     Label {
                         text: qsTr("BED 12 · ROOM 418")
-                        color: "#547184"
+                        color: Theme.textMuted
                         font.pixelSize: 12
                         font.bold: true
                     }
@@ -123,7 +123,7 @@ Item {
 
                     Label {
                         text: qsTr("Adult · Patient ID 804219")
-                        color: "#607482"
+                        color: Theme.textMuted
                     }
                 }
 
@@ -147,7 +147,7 @@ Item {
 
                 StatusPill {
                     label: qsTr("NIBP: 10 min")
-                    accent: "#2b6f8f"
+                    accent: Theme.info
                 }
             }
 
@@ -168,7 +168,7 @@ Item {
                     value: "78"
                     unit: qsTr("bpm")
                     status: qsTr("Within limits")
-                    accent: "#16794b"
+                    accent: Theme.success
                     selected: root.selectedVital === 0
 
                     Layout.fillWidth: true
@@ -190,7 +190,7 @@ Item {
                     value: "97"
                     unit: "%"
                     status: qsTr("Stable signal")
-                    accent: "#16794b"
+                    accent: Theme.success
                     selected: root.selectedVital === 1
 
                     Layout.fillWidth: true
@@ -212,7 +212,7 @@ Item {
                     value: "118/74"
                     unit: qsTr("mmHg")
                     status: qsTr("Measured 2 min ago")
-                    accent: "#2b6f8f"
+                    accent: Theme.info
                     selected: root.selectedVital === 2
 
                     Layout.fillWidth: true
@@ -234,7 +234,7 @@ Item {
                     value: "16"
                     unit: qsTr("/min")
                     status: qsTr("Within limits")
-                    accent: "#16794b"
+                    accent: Theme.success
                     selected: root.selectedVital === 3
 
                     Layout.fillWidth: true
@@ -259,14 +259,14 @@ Item {
                     anchors.top: parent.top
                     width: parent.width
                     height: 1
-                    color: "#d6e0e6"
+                    color: Theme.border
                 }
 
                 Rectangle {
                     anchors.bottom: parent.bottom
                     width: parent.width
                     height: 1
-                    color: "#d6e0e6"
+                    color: Theme.border
                 }
 
                 RowLayout {
@@ -279,12 +279,12 @@ Item {
                         Layout.preferredWidth: 8
                         Layout.preferredHeight: 8
                         radius: 4
-                        color: "#d18a1b"
+                        color: Theme.warning
                     }
 
                     Label {
                         text: qsTr("ADVISORY")
-                        color: "#8a5a15"
+                        color: Theme.warningText
                         font.bold: true
                         font.pixelSize: 11
                     }
@@ -292,7 +292,7 @@ Item {
                     Label {
                         Layout.fillWidth: true
                         text: qsTr("SpO₂ probe signal was intermittent. Check placement if the value becomes unstable.")
-                        color: "#526574"
+                        color: Theme.textSecondary
                         elide: Text.ElideRight
                     }
 
@@ -316,7 +316,7 @@ Item {
                 Label {
                     Layout.fillWidth: true
                     text: qsTr("Device status · Battery 86% · Network online · Self-test passed at 07:42")
-                    color: "#526574"
+                    color: Theme.textSecondary
                 }
             }
 

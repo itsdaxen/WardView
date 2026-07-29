@@ -12,7 +12,7 @@ ApplicationWindow {
 
     visible: true
     title: qsTr("WardView Bedside Monitor")
-    color: "#f4f7f9"
+    color: Theme.pageBackground
 
     property bool isMobile: width < 820
     property string currentPage: "overview"
@@ -30,7 +30,7 @@ ApplicationWindow {
 
         Rectangle {
             id: mainArea
-            color: "#f4f7f9"
+            color: Theme.pageBackground
 
             Loader {
                 id: overviewLoader
