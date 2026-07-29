@@ -17,6 +17,7 @@ ApplicationWindow {
     property bool isMobile: width < 820
     property int selectedVital: -1
     property string selectedVitalName: qsTr("No vital selected")
+    property string currentPage: "overview"
 
     component SectionTitle: Label {
         font.pixelSize: 20
@@ -103,6 +104,7 @@ ApplicationWindow {
             Button {
                 id: overviewButton
                 text: qsTr("Overview")
+                onClicked: window.currentPage = "overview"
             }
 
             Button {
@@ -113,6 +115,7 @@ ApplicationWindow {
             Button {
                 id: trendsButton
                 text: qsTr("Trends")
+                onClicked: window.currentPage = "trends"
             }
 
             TextField {
@@ -210,6 +213,7 @@ ApplicationWindow {
                 contentWidth: availableWidth
                 contentHeight: contentColumn.implicitHeight
                 clip: true
+                visible: window.currentPage === "overview"
 
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 ScrollBar.vertical.policy: ScrollBar.AsNeeded
@@ -445,6 +449,14 @@ ApplicationWindow {
                         Layout.preferredHeight: 4
                     }
                 }
+            }
+
+            Loader {
+                id: pageLoader
+
+                anchors.fill: parent
+                active: window.currentPage === "trends"
+                source: "TrendsPage.qml"
             }
         }
 

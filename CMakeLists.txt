@@ -18,6 +18,7 @@ qt_add_qml_module(wardview
     QML_FILES
         Main.qml
         VitalCard.qml
+        TrendsPage.qml
 )
 
 set_target_properties(wardview PROPERTIES
