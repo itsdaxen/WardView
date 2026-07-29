@@ -58,6 +58,8 @@ ApplicationWindow {
                 anchors.fill: parent
                 active: window.currentPage === "alarms"
                 source: "AlarmsPage.qml"
+
+                onLoaded: item.previousTabItem = sidebar.searchInput
             }
         }
 
