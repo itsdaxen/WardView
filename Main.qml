@@ -49,7 +49,10 @@ ApplicationWindow {
                 active: window.currentPage === "trends"
                 source: "TrendsPage.qml"
 
-                onLoaded: item.patientName = "Alex Morgan"
+                onLoaded: {
+                    item.patientName = "Alex Morgan";
+                    item.previousTabItem = sidebar.searchInput;
+                }
             }
 
             Loader {
