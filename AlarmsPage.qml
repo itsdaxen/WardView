@@ -16,128 +16,8 @@ Item {
             previousTabItem.KeyNavigation.tab = alarmList;
     }
 
-    ListModel {
-        id: alarmModel
-
-        ListElement {
-            time: "14:32"
-            parameter: "SpO₂"
-            message: "Low oxygen saturation"
-            value: "88 %"
-            priority: "High"
-            active: true
-            acknowledged: false
-        }
-
-        ListElement {
-            time: "14:18"
-            parameter: "ECG"
-            message: "Lead disconnected"
-            value: "Lead II"
-            priority: "Medium"
-            active: false
-            acknowledged: true
-        }
-
-        ListElement {
-            time: "13:54"
-            parameter: "Heart rate"
-            message: "High heart rate"
-            value: "128 bpm"
-            priority: "High"
-            active: false
-            acknowledged: true
-        }
-
-        ListElement {
-            time: "13:27"
-            parameter: "NIBP"
-            message: "High systolic pressure"
-            value: "154/92 mmHg"
-            priority: "Medium"
-            active: false
-            acknowledged: true
-        }
-
-        ListElement {
-            time: "12:46"
-            parameter: "Respiratory rate"
-            message: "Low respiratory rate"
-            value: "8 /min"
-            priority: "High"
-            active: false
-            acknowledged: true
-        }
-
-        ListElement {
-            time: "12:11"
-            parameter: "SpO₂"
-            message: "Probe disconnected"
-            value: "No signal"
-            priority: "Medium"
-            active: false
-            acknowledged: true
-        }
-
-        ListElement {
-            time: "11:38"
-            parameter: "Heart rate"
-            message: "Low heart rate"
-            value: "46 bpm"
-            priority: "High"
-            active: false
-            acknowledged: true
-        }
-
-        ListElement {
-            time: "10:52"
-            parameter: "ECG"
-            message: "Signal quality poor"
-            value: "Lead III"
-            priority: "Low"
-            active: false
-            acknowledged: true
-        }
-
-        ListElement {
-            time: "10:16"
-            parameter: "NIBP"
-            message: "Measurement unsuccessful"
-            value: "Retry"
-            priority: "Low"
-            active: false
-            acknowledged: true
-        }
-
-        ListElement {
-            time: "09:41"
-            parameter: "Respiratory rate"
-            message: "High respiratory rate"
-            value: "31 /min"
-            priority: "Medium"
-            active: false
-            acknowledged: true
-        }
-
-        ListElement {
-            time: "09:03"
-            parameter: "SpO₂"
-            message: "Low oxygen saturation"
-            value: "89 %"
-            priority: "High"
-            active: false
-            acknowledged: true
-        }
-
-        ListElement {
-            time: "08:24"
-            parameter: "ECG"
-            message: "Lead disconnected"
-            value: "Lead V"
-            priority: "Medium"
-            active: false
-            acknowledged: true
-        }
+    AlarmModel {
+        id: cppAlarmModel
     }
 
     ColumnLayout {
@@ -153,7 +33,7 @@ Item {
         }
 
         Label {
-            text: qsTr("Patient alarm history · %1 records").arg(alarmModel.count)
+            text: qsTr("Patient alarm history · %1 records").arg(alarmList.count)
             color: Theme.textSecondary
         }
 
@@ -175,7 +55,7 @@ Item {
                     currentIndex = 0;
             }
 
-            model: alarmModel
+            model: cppAlarmModel
             spacing: 0
             clip: true
 
@@ -246,7 +126,7 @@ Item {
                 }
 
                 onAcknowledgeRequested: {
-                    alarmModel.setProperty(index, "acknowledged", true);
+                    cppAlarmModel.setData(cppAlarmModel.index(index, 0), true, AlarmModel.AcknowledgedRole);
                 }
             }
 
