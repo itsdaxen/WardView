@@ -19,6 +19,7 @@ qt_add_executable(wardview
 
 qt_add_qml_module(wardview
     URI WardView
+
     QML_FILES
         Main.qml
         Theme.qml
@@ -29,6 +30,10 @@ qt_add_qml_module(wardview
         VitalCard.qml
         TrendsPage.qml
         TrendRow.qml
+
+    SOURCES
+        alarmmodel.h
+        alarmmodel.cpp
 )
 
 set_target_properties(wardview PROPERTIES
