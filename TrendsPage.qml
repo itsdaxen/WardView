@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls.Basic
 import QtQuick.Layouts
-import Qt.labs.qmlmodels
 
 Item {
     id: root
@@ -15,120 +14,13 @@ Item {
             previousTabItem.KeyNavigation.tab = trendTable;
     }
 
-    TableModel {
-        id: trendTableModel
-
-        TableModelColumn {
-            display: "time"
-        }
-
-        TableModelColumn {
-            display: "heartRate"
-        }
-
-        TableModelColumn {
-            display: "oxygenSaturation"
-        }
-
-        TableModelColumn {
-            display: "respiratoryRate"
-        }
-
-        TableModelColumn {
-            display: "nibp"
-        }
-
-        rows: [
-            {
-                time: "10:50",
-                heartRate: 79,
-                oxygenSaturation: 98,
-                respiratoryRate: 16,
-                nibp: "119/75"
-            },
-            {
-                time: "10:40",
-                heartRate: 78,
-                oxygenSaturation: 97,
-                respiratoryRate: 16,
-                nibp: "118/74"
-            },
-            {
-                time: "10:30",
-                heartRate: 77,
-                oxygenSaturation: 97,
-                respiratoryRate: 17,
-                nibp: "120/76"
-            },
-            {
-                time: "10:20",
-                heartRate: 75,
-                oxygenSaturation: 98,
-                respiratoryRate: 16,
-                nibp: "118/74"
-            },
-            {
-                time: "10:10",
-                heartRate: 74,
-                oxygenSaturation: 97,
-                respiratoryRate: 15,
-                nibp: "—"
-            },
-            {
-                time: "10:00",
-                heartRate: 76,
-                oxygenSaturation: 97,
-                respiratoryRate: 16,
-                nibp: "117/73"
-            },
-            {
-                time: "09:50",
-                heartRate: 78,
-                oxygenSaturation: 98,
-                respiratoryRate: 17,
-                nibp: "119/74"
-            },
-            {
-                time: "09:40",
-                heartRate: 77,
-                oxygenSaturation: 98,
-                respiratoryRate: 16,
-                nibp: "118/74"
-            },
-            {
-                time: "09:30",
-                heartRate: 75,
-                oxygenSaturation: 97,
-                respiratoryRate: 16,
-                nibp: "120/75"
-            },
-            {
-                time: "09:20",
-                heartRate: 76,
-                oxygenSaturation: 97,
-                respiratoryRate: 17,
-                nibp: "—"
-            },
-            {
-                time: "09:10",
-                heartRate: 74,
-                oxygenSaturation: 98,
-                respiratoryRate: 17,
-                nibp: "119/75"
-            },
-            {
-                time: "09:00",
-                heartRate: 72,
-                oxygenSaturation: 98,
-                respiratoryRate: 16,
-                nibp: "121/76"
-            }
-        ]
+    TrendModel {
+        id: cppTrendModel
     }
 
     ItemSelectionModel {
         id: trendSelectionModel
-        model: trendTableModel
+        model: cppTrendModel
     }
 
     ColumnLayout {
@@ -222,6 +114,8 @@ Item {
                 model: [qsTr("Time"), qsTr("HR (bpm)"), qsTr("SpO₂ (%)"), qsTr("RR (/min)"), qsTr("NIBP (mmHg)")]
 
                 delegate: Rectangle {
+                    id: headerCell
+
                     required property string modelData
 
                     implicitWidth: 140
@@ -233,7 +127,7 @@ Item {
                         anchors.leftMargin: 12
                         anchors.rightMargin: 12
 
-                        text: modelData
+                        text: headerCell.modelData
                         color: Theme.textSecondary
                         font.bold: true
                         verticalAlignment: Text.AlignVCenter
@@ -262,7 +156,7 @@ Item {
                         return width / columns;
                     }
 
-                    model: trendTableModel
+                    model: cppTrendModel
                     clip: true
 
                     selectionModel: trendSelectionModel
@@ -276,6 +170,8 @@ Item {
                     }
 
                     delegate: Rectangle {
+                        id: trendCell
+
                         required property var display
 
                         implicitWidth: 140
@@ -291,7 +187,7 @@ Item {
                             anchors.fill: parent
                             anchors.margins: 12
 
-                            text: display
+                            text: trendCell.display
                             color: Theme.textPrimary
                             verticalAlignment: Text.AlignVCenter
                         }
