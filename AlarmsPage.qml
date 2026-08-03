@@ -44,7 +44,7 @@ Item {
 
             Label {
                 Layout.fillWidth: true
-                text: qsTr("Patient alarm history · %1 records").arg(alarmList.count)
+                text: qsTr("Patient alarms · %1 shown").arg(alarmList.count)
                 color: Theme.textSecondary
             }
 
@@ -117,7 +117,7 @@ Item {
                     }
 
                     Label {
-                        text: qsTr("Measurement")
+                        text: qsTr("Parameter")
                         color: Theme.textMuted
                         font.bold: true
                     }
@@ -150,15 +150,14 @@ Item {
                 }
 
                 onAcknowledgeRequested: {
-                    cppAlarmProxyModel.setData(cppAlarmProxyModel.index(index, 0), true,
-                                               AlarmModel.AcknowledgedRole);
+                    cppAlarmProxyModel.setData(cppAlarmProxyModel.index(index, 0), true, AlarmModel.AcknowledgedRole);
                 }
             }
 
             footer: Label {
                 width: alarmList.width
                 height: 44
-                text: qsTr("%1 alarm records").arg(alarmList.count)
+                text: qsTr("%1 shown").arg(alarmList.count)
                 color: Theme.textMuted
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter

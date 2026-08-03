@@ -8,7 +8,11 @@ Rectangle {
     required property int index
     required property string time
     required property string parameter
+    required property string message
     required property string value
+    required property string category
+    required property string priority
+    required property bool active
     required property bool acknowledged
 
     required property real timeColumnWidth
@@ -19,7 +23,7 @@ Rectangle {
     signal acknowledgeRequested
 
     width: ListView.view ? ListView.view.width : 0
-    height: 72
+    height: 84
     color: Theme.surface
 
     RowLayout {
@@ -33,21 +37,39 @@ Rectangle {
             color: Theme.textSecondary
         }
 
-        Label {
-            text: root.parameter
-            color: Theme.textPrimary
-            font.bold: true
+        ColumnLayout {
+            spacing: 4
+
+            Label {
+                text: root.parameter
+                color: Theme.textPrimary
+                font.bold: true
+            }
+
+            Label {
+                text: qsTr("%1 · %2 · %3").arg(root.message).arg(root.category).arg(root.priority)
+                color: Theme.textSecondary
+            }
         }
 
         Item {
             Layout.fillWidth: true
         }
 
-        Label {
+        ColumnLayout {
             Layout.preferredWidth: root.valueColumnWidth
-            text: root.value
-            color: Theme.textPrimary
-            font.bold: true
+            spacing: 4
+
+            Label {
+                text: root.value
+                color: Theme.textPrimary
+                font.bold: true
+            }
+
+            Label {
+                text: root.active ? qsTr("Active") : qsTr("Resolved")
+                color: root.active ? Theme.warningText : Theme.success
+            }
         }
 
         Button {
@@ -66,7 +88,7 @@ Rectangle {
             }
 
             background: Rectangle {
-                color: root.acknowledged ? Theme.success : Theme.info
+                color: root.acknowledged ? Theme.textMuted : Theme.info
             }
 
             onClicked: root.acknowledgeRequested()

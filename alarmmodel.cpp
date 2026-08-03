@@ -11,6 +11,7 @@ QHash<int, QByteArray> AlarmModel::roleNames() const
         { ParameterRole, "parameter" },
         { MessageRole, "message" },
         { ValueRole, "value" },
+        { CategoryRole, "category" },
         { PriorityRole, "priority" },
         { ActiveRole, "active" },
         { AcknowledgedRole, "acknowledged" }
@@ -43,6 +44,8 @@ QVariant AlarmModel::data(const QModelIndex &index, int role) const
         return alarm.message;
     case ValueRole:
         return alarm.value;
+    case CategoryRole:
+        return alarm.category;
     case PriorityRole:
         return alarm.priority;
     case ActiveRole:
@@ -84,4 +87,3 @@ bool AlarmModel::setData(const QModelIndex &index, const QVariant &value, int ro
 
     return true;
 }
-
