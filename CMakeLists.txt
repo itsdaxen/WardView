@@ -36,6 +36,8 @@ qt_add_qml_module(wardview
         alarmmodel.cpp
         trendmodel.h
         trendmodel.cpp
+        alarmproxymodel.h
+        alarmproxymodel.cpp
 )
 
 set_target_properties(wardview PROPERTIES

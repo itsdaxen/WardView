@@ -18,7 +18,7 @@ Rectangle {
     signal selectionRequested
     signal acknowledgeRequested
 
-    width: ListView.view.width
+    width: ListView.view ? ListView.view.width : 0
     height: 72
     color: Theme.surface
 
@@ -80,7 +80,7 @@ Rectangle {
 
         height: 1
         color: Theme.border
-        visible: root.index < ListView.view.count - 1
+        visible: ListView.view ? root.index < ListView.view.count - 1 : false
     }
 
     TapHandler {

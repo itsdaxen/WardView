@@ -13,11 +13,18 @@ Item {
 
     onPreviousTabItemChanged: {
         if (previousTabItem)
-            previousTabItem.KeyNavigation.tab = alarmList;
+            previousTabItem.KeyNavigation.tab = showResolvedSwitch;
     }
 
     AlarmModel {
         id: cppAlarmModel
+    }
+
+    AlarmProxyModel {
+        id: cppAlarmProxyModel
+
+        sourceModel: cppAlarmModel
+        showResolved: false
     }
 
     ColumnLayout {
@@ -32,9 +39,26 @@ Item {
             font.bold: true
         }
 
-        Label {
-            text: qsTr("Patient alarm history · %1 records").arg(alarmList.count)
-            color: Theme.textSecondary
+        RowLayout {
+            Layout.fillWidth: true
+
+            Label {
+                Layout.fillWidth: true
+                text: qsTr("Patient alarm history · %1 records").arg(alarmList.count)
+                color: Theme.textSecondary
+            }
+
+            Switch {
+                id: showResolvedSwitch
+
+                text: qsTr("Show resolved")
+                checked: cppAlarmProxyModel.showResolved
+                activeFocusOnTab: true
+                KeyNavigation.backtab: root.previousTabItem
+                KeyNavigation.tab: alarmList
+
+                onToggled: cppAlarmProxyModel.showResolved = checked
+            }
         }
 
         ListView {
@@ -47,7 +71,7 @@ Item {
 
             keyNavigationEnabled: true
             highlightFollowsCurrentItem: true
-            KeyNavigation.backtab: root.previousTabItem
+            KeyNavigation.backtab: showResolvedSwitch
             activeFocusOnTab: true
 
             onActiveFocusChanged: {
@@ -55,7 +79,7 @@ Item {
                     currentIndex = 0;
             }
 
-            model: cppAlarmModel
+            model: cppAlarmProxyModel
             spacing: 0
             clip: true
 
@@ -126,7 +150,8 @@ Item {
                 }
 
                 onAcknowledgeRequested: {
-                    cppAlarmModel.setData(cppAlarmModel.index(index, 0), true, AlarmModel.AcknowledgedRole);
+                    cppAlarmProxyModel.setData(cppAlarmProxyModel.index(index, 0), true,
+                                               AlarmModel.AcknowledgedRole);
                 }
             }
 
